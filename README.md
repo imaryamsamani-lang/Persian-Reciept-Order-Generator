@@ -1,4 +1,4 @@
-# 🧾 Synthetic Persian OCR Data Generator
+# 🧾 Synthetic Reciept Ocrder Generator
 
 A synthetic receipt data generator for training Persian OCR models. This tool creates orders with corresponding text labels for OCR applications.
 
