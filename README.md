@@ -1,125 +1,238 @@
-# 🧾 Synthetic Reciept Ocrder Generator
+## Synthetic Receipt OCR Dataset Generator
 
-A synthetic receipt data generator for training Persian OCR models. This tool creates orders with corresponding text labels for OCR applications.
+A synthetic receipt data generation tool specifically designed for training Persian OCR models. This system produces realistic receipt-like documents with corresponding text labels, optimized for training vision-language models in OCR applications.
 
-## ✨ Features
+## Overview
 
--  **Persian-first OCR generation**  
--  Mixed Persian / English / numeric text rendering  
--  Random fonts, colors, and backgrounds  
--  Page-like layouts with numbering and lists  
--  Geometric distortions (conformal warp)  
--  Realistic image preprocessing (CLAHE, sharpening, resizing)  
--  Random rotations (0°, ±90°, 180°)  
--  PyTorch `Dataset` + `Collator` ready  
--  Compatible with **Dots.OCR style training**  
+Training robust OCR models for Persian text requires diverse, high-quality annotated data that captures real-world variations in document appearance, text layout, and linguistic complexity. This generator addresses this need by synthesizing receipt documents with controlled variations in typography, layout, and visual appearance, creating a scalable training dataset for Persian OCR systems.
 
+## Key Features
 
+Persian-language focused – Primary support for Persian (Farsi) script with mixed English and numeric content
 
-## 📁 Project Structure
+Realistic receipt simulation – Generates document layouts mimicking real receipts, invoices, and orders
+
+Visual diversity – Randomized fonts, colors, background textures, and geometric transformations
+
+Controlled distortions – Implements conformal warping and image preprocessing to simulate real-world degradation
+
+Multiple orientations – Supports 0°, ±90°, and 180° rotations for orientation-robust training
+
+Training-ready format – Provides PyTorch Dataset and Collator implementations compatible with vision-language model training pipelines
+
+Dots.OCR compatibility – Specifically designed to interface with Persian OCR training frameworks
+
+## Technical Architecture
+
+### Layout Generation
+
+Dynamically positions receipt elements (headers, item lists, totals, footers)
+
+Implements column-based formatting for multi-item receipts
+
+Supports variable-length content with proportional spacing
+
+### Text Synthesis
+
+Combines Persian product names, English technical terms, and numeric values
+
+Implements proper Persian text shaping and bidirectional text handling
+
+Generates realistic receipt metadata (dates, invoice numbers, tax calculations)
+
+### Visual Processing Pipeline
+
+Base generation – Clean receipt rendering with selected fonts and colors
+
+Geometric distortion – Applies conformal warping to simulate paper curvature
+
+Background integration – Blends with natural texture backgrounds
+
+Image enhancement – Applies CLAHE, sharpening, and resizing for realism
+
+Orientation randomization – Rotates final output for robustness
+
+## Project Structure
 
 ```text
-├── main.py                 # Dataset generation / visualization script
-├── data_loader.py          # PyTorch Dataset + Collator
-├── config.py               # name of products, units, amounts
-├── requirements.txt
-├── backgrounds/            # Background images (jpg/png/webp)
-├── fonts/
-│   ├── persian_fonts/      # Persian fonts (.ttf/.otf)
-│   └── english_fonts/      # English fonts
-├── generated_data/
-│   ├── images/
-│   └── labels/
-└── README.md
+├── main.py                 # Primary dataset generation and visualization
+├── data_loader.py          # PyTorch Dataset and Collator implementations
+├── config.py               # Configuration: product names, units, pricing
+├── requirements.txt        # Python dependencies
+├── backgrounds/            # Background texture images (.jpg, .png, .webp)
+├── fonts/                  # Typography resources
+│   ├── persian_fonts/      # Persian-compatible fonts (.ttf, .otf)
+│   └── english_fonts/      # English typefaces
+├── generated_data/         # Output directory
+│   ├── images/            # Generated receipt images
+│   └── labels/            # Corresponding text annotations
+└── README.md              # Documentation
 ```
 
+## Installation
 
-⚙️ Installation
+### Prerequisites
 
-Clone the repository and install dependencies:
+Python 3.8+
+
+PyTorch (≥1.9.0)
+
+PIL/Pillow for image processing
+
+OpenCV (optional, for advanced image transformations)
+
+### Setup
+
 ```bash
+# Clone repository
 git clone https://github.com/imaryamsamani-lang/Image-Data-Generator.git
 cd Image-Data-Generator
+
+# Install Python dependencies
 pip install -r requirements.txt
 ```
 
-Download the fonts and extract the into the fonts folder.
+### Resource Acquisition
 
-persian fonts:
-[Persian Fonts](https://drive.google.com/file/d/18JBa3f-4_tw2MgDiW6Po_-ydDdW11_8S/view?usp=drive_link)
+Persian Fonts
+Download and extract Persian-compatible fonts into fonts/persian_fonts/: [Persian Fonts](https://drive.google.com/file/d/18JBa3f-4_tw2MgDiW6Po_-ydDdW11_8S/view?usp=drive_link)
 
-english fonts:
-[English Fonts](https://drive.google.com/file/d/1YoSQN6qhEtqpdI-x6ONxn7EAUW70fJ8q/view?usp=sharing)
+English Fonts
+Place English typefaces in fonts/english_fonts/: [Persian Fonts](https://drive.google.com/file/d/18JBa3f-4_tw2MgDiW6Po_-ydDdW11_8S/view?usp=drive_link)
 
-Add background images to the backgrounds folder. Some samples are provided here: 
-[Backgrounds](https://drive.google.com/file/d/1GsIPEeqV_rzKYY6nsR-Rcxj9vz9AB1V2/view?usp=sharing)
+Background Textures
+Add background images to backgrounds/ for document texturing: [Backgrounds](https://drive.google.com/file/d/1GsIPEeqV_rzKYY6nsR-Rcxj9vz9AB1V2/view?usp=sharing)
 
 ## Usage
 
-1. Generate and save synthetic data
+### Data Generation
+
+Generate a synthetic dataset of receipt images with annotations:
 
 ```bash
 python main.py --save --output_path generated_data --max_samples 1000
 ```
 
-This will produce:
+Arguments:
 
-```bash
+--save: Enable saving generated data
+
+--output_path: Directory for output (default: generated_data)
+
+--max_samples: Number of samples to generate
+
+--image_size: Output image dimensions (default: (512, 512))
+
+--seed: Random seed for reproducibility
+
+### Dataset Structure
+
+The generator produces the following organized output:
+
+```text
 generated_data/
-├── images/
+├── images/                 # Receipt images (.png)
 │   ├── 0.png
 │   ├── 1.png
 │   └── ...
-└── labels/
+└── labels/                # Corresponding text annotations (.txt)
     ├── 0.txt
     ├── 1.txt
     └── ...
 ```
 
-Each image has a corresponding UTF-8 Persian label.
+Each annotation file contains the complete Persian text content of the receipt in UTF-8 encoding.
 
-2. Visualize samples (debug mode, training format)
+### Visualization Mode
+
+Preview generated samples with debugging information:
+
 ```bash
-python main.py --visualize
+python main.py --visualize --num_samples 5
 ```
 
-## Dataset Output Format
-
-Each dataset item returns a dictionary:
+### Data Format
+Each dataset sample is returned as a dictionary with the following structure:
 
 ```python
 {
-  "image": PIL.Image,
-  "answer": str,        # raw Persian text
-  "prompt_only": str,
-  "text_full": str
+  "image": PIL.Image,          # Receipt image in RGB format
+  "answer": str,              # Complete Persian text content
+  "prompt_only": str,         # Instruction prompt for OCR task
+  "text_full": str            # Combined prompt and answer text
 }
 ```
 
-This format is directly compatible with ision-Language fine-tuning.
+This format is directly compatible with vision-language model fine-tuning pipelines, particularly those following instruction-response patterns.
 
-## Output Results
+## Training Integration
+
+### PyTorch Dataset
+
+The provided data_loader.py implements a complete PyTorch Dataset class:
+
+```python
+from data_loader import ReceiptOCRDataset
+
+dataset = ReceiptOCRDataset(
+    data_dir="generated_data",
+    image_size=(512, 512),
+    augment=True
+)
+```
+
+### Collator Function
+
+The custom Collator handles:
+
+Vision feature extraction and processing
+
+Token masking for instruction-following training
+
+Proper handling of Persian text tokenization
+
+Support for multi-turn conversation formatting
+
+### Dots.OCR Compatibility
+
+The data format aligns with Persian OCR training requirements:
+
+Persian text preservation without reshaping
+
+Proper handling of bidirectional text
+
+Support for <|assistant|> and other special tokens
+
+Vision encoder compatibility
+
+## Sample Output
+Generated receipt demonstrating realistic Persian text layout with mixed English and numeric content:
 
 ![Diagram](images/2.png)
 
-## Training Integration (Dots.OCR example)
 
-The included Collator:
+## Important Notes
 
-Handles vision inputs via process_vision_info
+### Text Handling
 
-Masks prompt tokens correctly
+Do NOT reshape Persian text – The arabic_reshaper library is used only for visualization; labels are saved in standard Unicode order
 
-Supports multi-token <|assistant|> markers
+Font compatibility – Ensure all Persian fonts contain necessary glyphs for complete text rendering
 
-Produces labels for causal LM training
+Encoding – All text files are saved in UTF-8 encoding to preserve Persian character integrity
 
-## ⚠️ Important Notes
+### Image Quality
 
-Do NOT reshape Persian text when saving labels — arabic_reshaper is only for visualization
+Background resolution – Use high-resolution background images (≥1024×1024) for best results
 
-Fonts must support Persian glyphs
+Font scaling – Font sizes are automatically adjusted based on image dimensions
 
-Background images should be high resolution
+Color contrast – The generator ensures sufficient contrast between text and background
 
-This is a synthetic generator, not a real OCR dataset
+### Limitations
+
+This tool generates synthetic data for training purposes only
+
+Real-world receipt variations may not be fully captured
+
+Model performance on real documents depends on training data diversity and domain adaptation
