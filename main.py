@@ -1,72 +1,3 @@
-# from torch.utils.data import Dataset, DataLoader, RandomSampler, Subset
-# from data_loader import DotsOcrJsonl
-# import random
-# import matplotlib.pyplot as plt
-# import numpy as np
-# from config import stopphrases, prompt, numbers, persian_words, category_units
-# import os
-# import arabic_reshaper
-# from bidi.algorithm import get_display
-
-# def fix_persian_text(text: str) -> str:
-#     reshaped = arabic_reshaper.reshape(text)
-#     return get_display(reshaped)
-
-# save = True
-# visualize = False
-# output_path = "generated_images"
-
-# processor = ""
-
-# data_train = DotsOcrJsonl("11111",
-#                           stopphrases,
-#                           prompt,
-#                           numbers,
-#                           persian_words,
-#                           category_units,
-#                           processor, 'train')
-
-# # Datasets
-# train_ds = Subset(data_train, list(range(len(data_train))))
-
-# #collate = Collator(processor)
-
-# indices = list(range(len(train_ds)))
-# random.shuffle(indices)
-
-# if visualize: 
-#   for i, ind in enumerate(indices):
-#     item = train_ds[ind]
-
-#     plt.imshow(np.array(item['image']))
-#     plt.show()
-
-#     print(fix_persian_text(item["answer"]))
-#     print("_"*150)
-
-#     if i>10:
-#       break
-
-# if save:
-#         images_dir = os.path.join(output_path, "images")
-#         labels_dir = os.path.join(output_path, "labels")
-
-#         os.makedirs(images_dir, exist_ok=True)
-#         os.makedirs(labels_dir, exist_ok=True)
-
-#         for i, ind in enumerate(indices):
-#             item = train_ds[ind]
-
-#             plt.imsave(os.path.join(images_dir, f"{i}.png"), np.array(item["image"]))
-
-#             with open(os.path.join(labels_dir, f"{i}.txt"), "w", encoding="utf-8") as f:
-#                 f.write(item["answer"])
-
-#             if i>10:
-#                 break
-
-
-
 import argparse
 import random
 import os
@@ -87,8 +18,8 @@ def main():
     # Set up argument parser with default values
     parser = argparse.ArgumentParser(description='Generate OCR training data')
     
-    parser.add_argument('--data_path', type=str, default="11111", 
-                       help='Path to data source (default: 11111)')
+    parser.add_argument('--data_path', type=str, default=" "*1000, 
+                       help='Path to data source')
     parser.add_argument('--processor', type=str, default="", 
                        help='Text processor identifier (default: empty)')
     parser.add_argument('--mode', type=str, default="train", 
