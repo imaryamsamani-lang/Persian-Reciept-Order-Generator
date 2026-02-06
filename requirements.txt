@@ -1,0 +1,27 @@
+# Core
+python>=3.9
+numpy
+pandas
+scipy
+dataclasses; python_version < "3.7"
+typing-extensions
+
+# Deep Learning
+torch
+torchvision
+
+# Image Processing
+opencv-python
+Pillow
+matplotlib
+
+# NLP / Vision-Language
+transformers
+qwen-vl-utils
+
+# Data & Utils
+tqdm
+
+# Optional (recommended for Persian handling / visualization)
+arabic-reshaper
+python-bidi
