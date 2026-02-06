@@ -52,7 +52,9 @@ Image enhancement – Applies CLAHE, sharpening, and resizing for realism
 
 Orientation randomization – Rotates final output for robustness
 
-## Project Structure
+## Installation
+
+### Project Structure
 
 ```text
 ├── main.py                 # Primary dataset generation and visualization
@@ -69,7 +71,6 @@ Orientation randomization – Rotates final output for robustness
 └── README.md              # Documentation
 ```
 
-## Installation
 
 ### Prerequisites
 
