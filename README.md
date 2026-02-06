@@ -100,8 +100,7 @@ This format is directly compatible with ision-Language fine-tuning.
 
 ## Output Results
 
-![Diagram](results/5.png)
-![Diagram](results/6.png)
+![Diagram](results/2.png)
 
 ## Training Integration (Dots.OCR example)
 
