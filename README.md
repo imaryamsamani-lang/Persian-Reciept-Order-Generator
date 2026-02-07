@@ -173,13 +173,11 @@ This format is directly compatible with vision-language model fine-tuning pipeli
 The provided data_loader.py implements a complete PyTorch Dataset class:
 
 ```python
-from data_loader import ReceiptOCRDataset
+from data_loader import DotsOcrJsonl, Collator
+processor = #Placeholder processor (load later)
 
-dataset = ReceiptOCRDataset(
-    data_dir="generated_data",
-    image_size=(512, 512),
-    augment=True
-)
+# Dataset
+data_train = DotsOcrJsonl(df, processor, "train")
 ```
 
 ### Collator Function
