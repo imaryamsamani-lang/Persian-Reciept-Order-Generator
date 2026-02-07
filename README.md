@@ -220,6 +220,7 @@ Generated receipt demonstrating realistic Persian text layout with mixed English
 
 ![Diagram](images/2.png)
 ![Diagram](images/3.png)
+![Diagram](images/9.png)
 
 ## Important Notes
 
