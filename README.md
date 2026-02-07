@@ -12,7 +12,7 @@ Random units and amounts (may not be realistic)
 
 Multiple fonts and typographic styles
 
-Additional external phrases common in orders ("لطفا ارسال کنید", "با تشکر", etc.)
+Additional external phrases common in orders ("لطفا ارسال کنید", "با تشکر", "برای روز ۱۴۰۴/۰۶/۰۵" etc.)
 
 By providing fully annotated synthetic documents, this tool enables scalable training of OCR models for Persian text recognition, even when real data is limited or unavailable.
 
@@ -83,7 +83,6 @@ Orientation randomization – Rotates final output for robustness
 └── README.md               # Documentation
 ```
 
-
 ### Prerequisites
 
 Python 3.8+
@@ -136,7 +135,7 @@ Arguments:
 
 --image_size: Output image dimensions (default: (512, 512))
 
---seed: Random seed for reproducibility
+--shuffle: Shuffle dataset
 
 ### Dataset Structure
 
