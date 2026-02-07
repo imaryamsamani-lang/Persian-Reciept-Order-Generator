@@ -1,4 +1,4 @@
-## Synthetic Receipt OCR Dataset Generator
+# Synthetic Receipt OCR Dataset Generator
 
 A synthetic receipt data generation tool specifically designed for training Persian OCR models. This system produces realistic receipt-like documents with corresponding text labels, optimized for training vision-language models in OCR applications.
 
