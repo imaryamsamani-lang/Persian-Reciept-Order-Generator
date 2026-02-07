@@ -1,26 +1,38 @@
-# Synthetic Receipt OCR Dataset Generator
+# Synthetic Order List OCR Dataset Generator
 
-A synthetic receipt data generation tool specifically designed for training Persian OCR models. This system produces realistic receipt-like documents with corresponding text labels, optimized for training vision-language models in OCR applications.
+A synthetic order list (لیست سفارش) data generator specifically designed for training Persian OCR models. This tool produces realistic, receipt-like documents with corresponding text labels, optimized for vision-language and OCR model training. The generated content includes randomized products, units, amounts, and additional textual phrases such as "لطفا ارسال کنید" or "با تشکر", creating diverse examples for robust Persian OCR training.
 
 ## Overview
 
-Training robust OCR models for Persian text requires diverse, high-quality annotated data that captures real-world variations in document appearance, text layout, and linguistic complexity. This generator addresses this need by synthesizing receipt documents with controlled variations in typography, layout, and visual appearance, creating a scalable training dataset for Persian OCR systems.
+Training accurate Persian OCR systems requires large, diverse, and annotated datasets that capture real-world variations in text, layout, and document appearance. Real order lists or receipts are often scarce or sensitive. This generator addresses this limitation by synthesizing order documents with controlled randomness, including:
+
+Randomly selected products
+
+Random units and amounts (may not be realistic)
+
+Multiple fonts and typographic styles
+
+Additional external phrases common in orders ("لطفا ارسال کنید", "با تشکر", etc.)
+
+By providing fully annotated synthetic documents, this tool enables scalable training of OCR models for Persian text recognition, even when real data is limited or unavailable.
 
 ## Key Features
 
-Persian-language focused – Primary support for Persian (Farsi) script with mixed English and numeric content
+Persian-language focused – Primary support for Persian (Farsi) script with mixed numeric and English content.
 
-Realistic receipt simulation – Generates document layouts mimicking real receipts, invoices, and orders
+Synthetic order simulation – Generates lists mimicking real order documents (لیست سفارش).
 
-Visual diversity – Randomized fonts, colors, background textures, and geometric transformations
+Visual diversity – Randomized fonts, colors, background textures, and geometric transformations.
 
-Controlled distortions – Implements conformal warping and image preprocessing to simulate real-world degradation
+Text augmentation – Adds realistic contextual phrases common in orders to improve OCR robustness.
 
-Multiple orientations – Supports 0°, ±90°, and 180° rotations for orientation-robust training
+Controlled distortions – Applies warping, noise, and preprocessing to simulate real-world document degradation.
 
-Training-ready format – Provides PyTorch Dataset and Collator implementations compatible with vision-language model training pipelines
+Orientation support – Supports 0°, ±90°, and 180° rotations for orientation-robust training.
 
-Dots.OCR compatibility – Specifically designed to interface with Persian OCR training frameworks
+Training-ready format – Provides PyTorch Dataset and collator implementations compatible with vision-language pipelines.
+
+OCR compatibility – Designed to integrate with Persian OCR training frameworks.
 
 ## Technical Architecture
 
