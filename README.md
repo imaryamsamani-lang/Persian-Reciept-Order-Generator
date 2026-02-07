@@ -219,7 +219,7 @@ Vision encoder compatibility
 Generated receipt demonstrating realistic Persian text layout with mixed English and numeric content:
 
 ![Diagram](images/2.png)
-
+![Diagram](images/3.png)
 
 ## Important Notes
 
