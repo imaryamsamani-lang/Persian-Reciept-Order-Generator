@@ -66,9 +66,9 @@ Orientation randomization – Rotates final output for robustness
 │   ├── persian_fonts/      # Persian-compatible fonts (.ttf, .otf)
 │   └── english_fonts/      # English typefaces
 ├── generated_data/         # Output directory
-│   ├── images/            # Generated receipt images
-│   └── labels/            # Corresponding text annotations
-└── README.md              # Documentation
+│   ├── images/             # Generated receipt images
+│   └── labels/             # Corresponding text annotations
+└── README.md               # Documentation
 ```
 
 
@@ -158,9 +158,9 @@ Each dataset sample is returned as a dictionary with the following structure:
 ```python
 {
   "image": PIL.Image,          # Receipt image in RGB format
-  "answer": str,              # Complete Persian text content
-  "prompt_only": str,         # Instruction prompt for OCR task
-  "text_full": str            # Combined prompt and answer text
+  "answer": str,               # Complete Persian text content
+  "prompt_only": str,          # Instruction prompt for OCR task
+  "text_full": str             # Combined prompt and answer text
 }
 ```
 
